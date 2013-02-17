@@ -22,7 +22,7 @@ CC_FLAGS = $(CPU) -c -Os -fno-common -fmessage-length=0 -Wall -fno-exceptions -f
 CC_SYMBOLS = -DTARGET_LPC1768 -DTOOLCHAIN_GCC_ARM -DNDEBUG -D__CORTEX_M3
 
 LD_FLAGS = -mcpu=cortex-m3 -mthumb -Wl,--gc-sections --specs=nano.specs -u _printf_float -u _scanf_float
-LD_SYS_LIBS = -lstdc++ -lsupc++ -lm -lc -lgcc -lnosys -Wl,-Map=$(PROJECT).map
+LD_SYS_LIBS = -lstdc++ -lsupc++ -lm -lc -lgcc -lnosys -Wl,-Map=$(PROJECT).map,--cref
 
 all: $(PROJECT).bin
 

@@ -8,7 +8,7 @@ SYS_OBJECTS =
 INCLUDE_PATHS = -I. -I./LPC1768 
 LIBRARY_PATHS = 
 LIBRARIES = 
-LINKER_SCRIPT = ./LPC1768/GCC_ARM/LPC1768.ld
+LINKER_SCRIPT = ./LPC1768/LPC1768.ld
 
 ############################################################################### 
 AS      = $(GCC_BIN)arm-none-eabi-as

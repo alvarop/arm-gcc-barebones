@@ -3,11 +3,11 @@
 
 GCC_BIN = /home/alvaro/code/gcc/gcc-arm-none-eabi-4_7-2012q4/bin/
 PROJECT = test
-OBJECTS = ./main.o 
-SYS_OBJECTS = ./mbed/LPC1768/GCC_ARM/cmsis_nvic.o ./mbed/LPC1768/GCC_ARM/system_LPC17xx.o ./mbed/LPC1768/GCC_ARM/core_cm3.o ./mbed/LPC1768/GCC_ARM/startup_LPC17xx.o 
-INCLUDE_PATHS = -I. -I./mbed -I./mbed/LPC1768 -I./mbed/LPC1768/GCC_ARM 
+OBJECTS = ./system_LPC17xx.o ./startup_LPC17xx.o ./main.o 
+SYS_OBJECTS = ./mbed/LPC1768/GCC_ARM/cmsis_nvic.o ./mbed/LPC1768/GCC_ARM/core_cm3.o
+INCLUDE_PATHS = -I. -I./mbed/LPC1768 -I./mbed/LPC1768/GCC_ARM 
 LIBRARY_PATHS = -L./mbed/LPC1768/GCC_ARM 
-LIBRARIES = -lmbed 
+LIBRARIES = 
 LINKER_SCRIPT = ./mbed/LPC1768/GCC_ARM/LPC1768.ld
 
 ############################################################################### 

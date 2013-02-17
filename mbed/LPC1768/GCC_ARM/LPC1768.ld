@@ -80,6 +80,7 @@ SECTIONS
     __exidx_end = .;
 
     __etext = .;
+    __sidata = __etext;
         
     .data : AT (__etext)
     {

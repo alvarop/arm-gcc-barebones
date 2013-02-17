@@ -5,10 +5,10 @@ GCC_BIN = /home/alvaro/code/gcc/gcc-arm-none-eabi-4_7-2012q4/bin/
 PROJECT = test
 OBJECTS = ./system_LPC17xx.o ./startup_LPC17xx.o ./main.o 
 SYS_OBJECTS = 
-INCLUDE_PATHS = -I. -I./mbed/LPC1768 
+INCLUDE_PATHS = -I. -I./LPC1768 
 LIBRARY_PATHS = 
 LIBRARIES = 
-LINKER_SCRIPT = ./mbed/LPC1768/GCC_ARM/LPC1768.ld
+LINKER_SCRIPT = ./LPC1768/GCC_ARM/LPC1768.ld
 
 ############################################################################### 
 AS      = $(GCC_BIN)arm-none-eabi-as

@@ -1,5 +1,5 @@
 GCC_BIN = /home/alvaro/code/gcc/gcc-arm-none-eabi-4_7-2012q4/bin/
-PROJECT = test
+PROJECT = blink
 OBJECTS = ./system_LPC17xx.o ./startup_LPC17xx.o ./main.o 
 SYS_OBJECTS = 
 INCLUDE_PATHS = -I. -I./LPC1768 

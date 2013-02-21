@@ -1,11 +1,12 @@
 GCC_BIN = /home/alvaro/code/gcc/gcc-arm-none-eabi-4_7-2012q4/bin/
 PROJECT = blink
-OBJECTS = ./system_LPC17xx.o ./startup_LPC17xx.o ./main.o 
+OBJECTS = system_LPC17xx.o startup_LPC17xx.o main.o 
 SYS_OBJECTS = 
 INCLUDE_PATHS = -I. -I./LPC1768 
 LIBRARY_PATHS = 
 LIBRARIES = 
 LINKER_SCRIPT = ./LPC1768/LPC1768.ld
+BUILD_DIR = build/
 
 ############################################################################### 
 AS      = $(GCC_BIN)arm-none-eabi-as
@@ -24,20 +25,24 @@ LD_SYS_LIBS = -lc -lgcc -lnosys
 all: $(PROJECT).bin
 
 clean:
-	rm -f $(PROJECT).bin $(PROJECT).elf $(OBJECTS) $(PROJECT).map
+	rm -f $(PROJECT).bin $(PROJECT).elf $(addprefix $(BUILD_DIR), $(OBJECTS)) $(PROJECT).map
+	rmdir $(BUILD_DIR)
 
 .s.o:
-	$(AS) $(CPU) -o $@ $<
+	mkdir -p $(BUILD_DIR)
+	$(AS) $(CPU) -o $(addprefix $(BUILD_DIR), $@) $<
 
 .c.o:
-	$(CC)  $(CC_FLAGS) $(CC_SYMBOLS) -std=gnu99   $(INCLUDE_PATHS) -o $@ $<
+	mkdir -p $(BUILD_DIR)
+	$(CC)  $(CC_FLAGS) $(CC_SYMBOLS) -std=gnu99   $(INCLUDE_PATHS) -o $(addprefix $(BUILD_DIR), $@) $<
 
 .cpp.o:
-	$(CPP) $(CC_FLAGS) $(CC_SYMBOLS) -std=gnu++98 $(INCLUDE_PATHS) -o $@ $<
+	mkdir -p $(BUILD_DIR)
+	$(CPP) $(CC_FLAGS) $(CC_SYMBOLS) -std=gnu++98 $(INCLUDE_PATHS) -o $(addprefix $(BUILD_DIR), $@) $<
 
 
 $(PROJECT).elf: $(OBJECTS) $(SYS_OBJECTS)
-	$(LD) $(LD_FLAGS) -T$(LINKER_SCRIPT) $(LIBRARY_PATHS) -o $@ $^ $(LIBRARIES) $(LD_SYS_LIBS) $(LIBRARIES) $(LD_SYS_LIBS)
+	$(LD) $(LD_FLAGS) -T$(LINKER_SCRIPT) $(LIBRARY_PATHS) -o $@ $(addprefix $(BUILD_DIR), $^) $(LIBRARIES) $(LD_SYS_LIBS) $(LIBRARIES) $(LD_SYS_LIBS)
 
 $(PROJECT).bin: $(PROJECT).elf
 	$(OBJCOPY) -O binary $< $@

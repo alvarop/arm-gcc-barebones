@@ -7,18 +7,21 @@
 #define LED4_PIN (23)
 
 int main() {
-  // Setup P1.23 as output
+  
+  SystemInit();
+  
+    // Setup P1.23 as output
   LPC_GPIO1->FIODIR |= (1 << LED4_PIN);
     
   for(;;) {
-    for(uint32_t delay = 0; delay < 1000000; delay++) {
+    for(uint32_t delay = 0; delay < 10000000; delay++) {
        __asm("NOP");
     }
     
     // Turn LED ON
     LPC_GPIO1->FIOSET = (1 << LED4_PIN);
     
-    for(uint32_t delay = 0; delay < 1000000; delay++) {
+    for(uint32_t delay = 0; delay < 10000000; delay++) {
        __asm("NOP");
     }
     
